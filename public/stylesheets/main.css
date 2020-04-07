@@ -13,10 +13,12 @@ body{
  .heading{
 	 color: blanchedalmond;
  } 
+  a:link {
+	color: blanchedalmond;
+  }
   a:visited {
 	color: blanchedalmond;
   }
-  
   a:hover {
 	 color: white;
   }

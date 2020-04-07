@@ -1,0 +1,108 @@
+body{
+	background-image: url("https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.jumbotron{
+	background: transparent;
+	border: 1px solid blanchedalmond;
+	color: blanchedalmond;
+}
+  
+ .heading{
+	 color: blanchedalmond;
+ } 
+  a:visited {
+	color: blanchedalmond;
+  }
+  
+  a:hover {
+	 color: white;
+  }
+  
+  .login-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	color: blanchedalmond;
+}
+
+.login-box h1{
+    float: left;
+    font-size: 70px;
+    border-bottom: 5px solid blanchedalmond;
+    margin-bottom: 50px;
+    padding: 13px 0
+}
+
+.textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 5px 0;
+    border-bottom: 1px solid blanchedalmond;
+}
+
+.textbox i{
+    width: 26px;
+    float: left;
+    text-align: center;
+}
+
+.textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80px;
+    float: left;
+    margin: 0 10px;
+}
+
+.btn1{
+    width: 100%;
+    background: none;
+    border: 2px solid blanchedalmond;
+    color: blanchedalmond;
+    padding: 5px;
+    font-size: 18px;
+    margin: 12px 0;
+}
+
+.thumbnail img{
+	width: 100%;
+}
+
+.thumbnail{
+	padding:0;
+	background-color: blanchedalmond;
+	border: 1px solid blanchedalmond;
+}
+
+.thumbnail .caption-full{
+	padding: 9px;
+}
+
+.delete-form{
+	display: inline;
+}
+
+.links{
+	font-family: 'Dancing Script', cursive;
+	font-size: 66px;
+	/* margin: auto;
+	width: 100px */
+	text-align: center;
+	color: blanchedalmond;
+}
+
+.well{
+	background-color: blanchedalmond;
+}
+
+.add{
+	color: blanchedalmond;
+}

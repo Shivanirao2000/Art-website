@@ -19,7 +19,9 @@ const userSchema = new Schema({
     secretToken: String,
     active: Boolean,
     username: String,
-    password: String
+    password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 }, {
     timestamps: {
         createdAt: 'createdAt',

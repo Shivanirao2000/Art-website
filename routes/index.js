@@ -254,7 +254,7 @@ router.route('/login')
       const { secretToken } = req.body;
 
       // Find account with matching secret token
-      const user = await User.findOne({ 'secretToken': secretToken });
+      const user = await User.findOne({ 'secretToken': secretToken.trim() });
       if (!user) {
         req.flash('error', 'No user found.');
         res.redirect('/verify');

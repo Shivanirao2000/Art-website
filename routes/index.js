@@ -119,7 +119,7 @@ Please verify your email by typing the following token:
 Token: <b>${secretToken}</b>
 <br/>
 On the following page:
-<a href="http://localhost:3000/verify">http://localhost:3000/verify</a>
+<a href="https://whispering-fortress-95384.herokuapp.com/verify">https://whispering-fortress-95384.herokuapp.com/verify</a>
 <br/><br/>
 Have a pleasant day.` 
 

@@ -1,32 +1,32 @@
 var express=require("express");
+var cors=require("cors");
 var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
+const morgan = require('morgan')
+const path = require('path');
+const cookieParser = require('cookie-parser');
 var Campground=require("./models/camp");
 var Comment=require("./models/comments");
 var User=require("./models/user");
 // var seedDB=require("./seeds");
+const session = require('express-session');
 var passport=require("passport");
 var LocalStrategy=require("passport-local");
 var methodOverride=require("method-override");
 var flash=require("connect-flash");
 var ejsLint = require('ejs-lint');
-
+require('./config/passport');
 
 var commentRoutes=require("./routes/comments");
 var campgroundRoutes=require("./routes/campgrounds");
 var authRoutes=require("./routes/index");
 
-if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config()
-  }
-  
-  const stripeSecretKey = process.env.STRIPE_SECRET_KEY
-  const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
-
-const fs = require('fs')
-const stripe = require('stripe')(stripeSecretKey)
-
+// if (process.env.NODE_ENV !== 'production') {
+	// require('dotenv').config()
+//   }
+ 
+mongoose.Promise = global.Promise;
 // mongoose.connect(process.env.DATABASEURL, {
 	mongoose.connect("mongodb+srv://shivani:art_app@cluster0-m37a8.mongodb.net/test?retryWrites=true&w=majority" , {
 					
@@ -52,9 +52,9 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
 	res.locals.currentUser=req.user;
@@ -62,6 +62,9 @@ app.use(function(req, res, next){
 	res.locals.success=req.flash("success");
 	next();
 });
+
+app.use(express.json());
+app.use(cors());
 
 app.use(authRoutes);
 app.use(campgroundRoutes);

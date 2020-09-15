@@ -11,15 +11,21 @@
 	<div class="login-box">
 	<form action="/login" method="post">
 	
-		<div class="textbox">	
+		<!-- <div class="textbox">	
 			<i class="fas fa-user"></i>
 			<input type="text" name="username" placeholder="Username">
 		</div>
 		<div class="textbox">
 			<i class="fas fa-lock"></i>
 			<input type="password" name="password" placeholder="Password">
-		</div>
+		</div> -->
 	
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+
 		<!-- <button class="btn" type="submit" value="Login!"> -->
 			<button class="btn1">Login</button>
 	</form>

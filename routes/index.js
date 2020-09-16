@@ -8,31 +8,10 @@ const mailer = require('../misc/mailer');
 var async = require("async");
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
-// const mailgun = require("mailgun-js");
-// const DOMAIN = 'sandbox6895adad6a8545f5bf2702521cc5dca3.mailgun.org';
-// const key= '0abd07500c9c26b95cbfc3dc09475b9c-d5e69b0b-d556f644';
-// const mg = mailgun({apiKey: key, domain: DOMAIN});
 
 router.get("/", function(req,res){
 	res.render("landing.ejs")
 });
-
-// router.get("/register", function(req,res){
-// 	res.render("register");
-// });
-
-// router.post("/register", function(req,res){
-// 	User.register(new User({username: req.body.username}), req.body.password, function(err, user){
-// 		if(err){
-// 			req.flash("error", err.message)
-// 			return res.redirect("/register");
-// 		}
-// 		passport.authenticate("local")(req, res, function(){
-// 			req.flash("success", "Welcome to Sierra! "+ user.username)
-// 			res.redirect("/campgrounds");
-// 		});
-// 	});
-// });
 
 // Validation Schema
 const userSchema = Joi.object().keys({
@@ -82,9 +61,6 @@ router.route('/register')
         return;
       }
 
-      // Hash the password
-      // const hash = await User.hashPassword(result.value.password);
-
 const secretToken = randomstring.generate();
 console.log('secretToken', secretToken);
 
@@ -95,22 +71,10 @@ result.value.secretToken = secretToken;
 result.value.active = false;
 
 // Save user to DB
-// delete result.value.confirmationPassword;
-// result.value.password = hash;
 
 const newUser = await new User(result.value); 
 console.log('newUser', newUser);
 await newUser.save();
-
-// const data = {
-// 	from: 'noreply@gmail.com',
-// 	to: result.value.email,
-// 	subject: 'Please verify your email!',
-// 	text: html
-// };
-// mg.messages().send(data, function (error, body) {
-// 	console.log(body);
-// });
 
 // Compose email
 const html = `Hi there,
@@ -144,8 +108,7 @@ router.get('/forgot', function(req, res) {
 
 var generateResetToken = () => {
   return new Promise((resolve, reject) => {
-    // crypto random bytes has a callback.
-    // randombytes(size[, callback])
+    
     crypto.randomBytes(20, (err, buf) => {
       if (err) reject(err);
       else {
@@ -169,8 +132,7 @@ router.post('/forgot', async (req, res) => {
 			throw 'user not found.'
 		}
 		user.resetPasswordToken = reset_token;
-		user.resetPasswordExpires = Date.now() + 3600000; // 1 hour in ms
-		// passport local mongoose allows for promises inherently.
+		user.resetPasswordExpires = Date.now() + 3600000; 
     await user.save();
     
     const html2='You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -190,10 +152,7 @@ router.post('/forgot', async (req, res) => {
 
 router.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-    // if (!user) {
-    //   req.flash('error', 'Password reset token is invalid or has expired.');
-    //   return res.redirect('/forgot');
-    // }
+    
     res.render('reset', {token: req.params.token});
   });
 });
@@ -206,11 +165,6 @@ router.post("/reset/:token", async (req, res) => {
         resetPasswordExpires: { $gt: Date.now() }
       }
     );
-  
-    // if(!user){
-    //   req.flash("error", "Password reset token is invalid or has expired.");
-    //   return res.redirect("back");
-    // }
   
     if (req.body.password === req.body.confirm){  
       console.log(req.body.password);    
@@ -277,13 +231,6 @@ router.get("/logout", function(req,res){
 	req.flash("success", "Logged out")
 	res.redirect("/campgrounds");
 });
-
-// router.route('/logout')
-//   .get(isAuthenticated, (req, res) => {
-//     req.logout();
-//     req.flash('success', 'Successfully logged out. Hope to see you soon!');
-//     res.redirect('/');
-//   });
 
 
 function isLoggedIn(req, res, next){

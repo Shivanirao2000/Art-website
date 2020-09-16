@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 var Campground=require("./models/camp");
 var Comment=require("./models/comments");
 var User=require("./models/user");
-// var seedDB=require("./seeds");
 const session = require('express-session');
 var passport=require("passport");
 var LocalStrategy=require("passport-local");
@@ -21,13 +20,8 @@ require('./config/passport');
 var commentRoutes=require("./routes/comments");
 var campgroundRoutes=require("./routes/campgrounds");
 var authRoutes=require("./routes/index");
-
-// if (process.env.NODE_ENV !== 'production') {
-	// require('dotenv').config()
-//   }
  
 mongoose.Promise = global.Promise;
-// mongoose.connect(process.env.DATABASEURL, {
 	mongoose.connect("mongodb+srv://shivani:art_app@cluster0-m37a8.mongodb.net/test?retryWrites=true&w=majority" , {
 					
 			useUnifiedTopology: true,

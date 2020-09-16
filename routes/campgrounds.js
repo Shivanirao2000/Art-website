@@ -5,15 +5,6 @@ var Antique=require("../models/antique");
 var Pencil=require("../models/pencil");
 var Comment=require("../models/comments");
 var middleware=require("../middleware");
-// if (process.env.NODE_ENV !== 'production') {
-// 	require('dotenv').config()
-//   }
-  
-// const stripeSecretKey = process.env.STRIPE_SECRET_KEY
-// const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
-
-// const fs = require('fs')
-// const stripe = require('stripe')(stripeSecretKey)
 
 router.get("/campgrounds",function(req,res){
 Campground.find({}, function(err,campgrounds){

@@ -1,7 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
-// passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -29,19 +28,11 @@ passport.use('local', new LocalStrategy({
         }
 
         //2) Check if the password is correct
-        // const isValid = User.comparePasswords(password, user.password);
         const isValid = user.password == password;
         
         if (!isValid) {
             return done(null, false, { message: 'Unknown Password' });
         }
-
-        // if (!User.authenticate(password)) {
-        //     return done(null, false, {
-        //         message: 'Invalid Password'
-        //     });
-        // }
-
         // 3) Check if email has been verified
         if (!user.active) {
             return done(null, false, { message: 'Sorry, you must verify email first' });

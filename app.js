@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express=require("express");
 var cors=require("cors");
 var app=express();
@@ -22,7 +23,7 @@ var campgroundRoutes=require("./routes/campgrounds");
 var authRoutes=require("./routes/index");
  
 mongoose.Promise = global.Promise;
-	mongoose.connect("mongodb+srv://shivani:art_app@cluster0-m37a8.mongodb.net/test?retryWrites=true&w=majority" , {
+	mongoose.connect("mongodb+srv://shivani:"+process.env.MONGO_DB_PASSWORD+"@cluster0-m37a8.mongodb.net/test?retryWrites=true&w=majority" , {
 					
 			useUnifiedTopology: true,
 			useNewUrlParser: true,

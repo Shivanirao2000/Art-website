@@ -25,9 +25,7 @@ cd Art-website
 ```
 * Install the required dependencies
 ```
-npm init
-npm install express express-session body-parser ejs method-override --save
-npm install mongoose passport passport-local passport-local-mongoose --save
+npm install 
 ```
 * Run Node.js server
 ```

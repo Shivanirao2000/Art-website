@@ -8,7 +8,6 @@
 * Users can edit their own posts.
 
 ## Features
-* Website [URL](https://whispering-fortress-95384.herokuapp.com/)
 * System architecture – MVC architecture
 * Hosted on – Heroku
 * Frontend languages - HTML, CSS, JavaScript
